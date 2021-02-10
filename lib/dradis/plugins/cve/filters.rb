@@ -15,7 +15,7 @@ module Dradis::Plugins::CVE
         begin
           keyword = CGI::escape(params[:query])
           url = CONF[:url] + keyword
-          html = Nokogiri::HTML(URI.open(url))
+          html = Nokogiri::HTML(open(url))
 
           table = html.at_xpath('//table[@data-testid="vuln-results-table"]')
           table.xpath('./tbody/tr').each do |tr|
